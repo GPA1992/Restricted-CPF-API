@@ -1,10 +1,10 @@
 "use strict";
 require("dotenv/config");
 const config = {
-    username: process.env.MYSQL_USER || 'gpa',
-    password: process.env.MYSQL_PASSWORD || 'gabriel1',
-    database: process.env.DB_NAME || 'visitors',
-    host: process.env.MYSQL_HOST || 'api-node-db.chqpb5pvf83t.sa-east-1.rds.amazonaws.com',
+    username: process.env.MYSQL_USER || 'root',
+    password: process.env.MYSQL_PASSWORD || 'root123',
+    database: process.env.DB_NAME || 'antifraude_cpf_db',
+    host: process.env.MYSQL_HOST || 'db',
     port: Number(process.env.DB_PORT) || 3306,
     dialect: 'mysql',
 };

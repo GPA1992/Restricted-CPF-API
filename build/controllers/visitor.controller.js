@@ -22,21 +22,33 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const visitorController = __importStar(require("../controllers/visitor.controller"));
-const router = express_1.default.Router();
-// R -> READ
-router.get('/', visitorController.getAll);
-// C -> CREATE
-router.post('/', visitorController.create);
-// R -> READ.. But by ID
-router.get('/:visitorID');
-// U -> UPDATE
-router.put('/:visitorID');
-// D -> DELETE
-router.put('/:visitorID');
-exports.default = router;
+exports.getAll = exports.create = void 0;
+const visitorService = __importStar(require("../services/visitor.service"));
+const create = async (req, res) => {
+    try {
+        const visitor = req.body;
+        const create = await visitorService.visitorCreate(visitor);
+        return res.status(201).json(create);
+    }
+    catch (err) {
+        return res.status(500).json({
+            message: 500,
+            error: err.message,
+        });
+    }
+};
+exports.create = create;
+const getAll = async (req, res) => {
+    try {
+        const visitors = await visitorService.getAll();
+        return res.status(200).json(visitors);
+    }
+    catch (err) {
+        return res.status(500).json({
+            message: 500,
+            error: err.message,
+        });
+    }
+};
+exports.getAll = getAll;
