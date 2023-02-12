@@ -15,10 +15,10 @@
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
     ],
-    "rules": {       
-        "space-before-function-paren": ["error", "always"],
+    "rules": {      
+       "space-before-function-paren": ["error", "always"],
         "indent": [
             "error",
             4

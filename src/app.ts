@@ -1,6 +1,5 @@
 import express from 'express';
 import { CPFRoutes } from './routes';
-import  CPFValidate from './middleware/cpfFormatValidate';
 
 class App {
     public app: express.Express;
@@ -23,7 +22,7 @@ class App {
 
         this.app.use(express.json());
         this.app.use(accessControl);
-        this.app.use('/cpf', CPFValidate.CPFFormatValidate, CPFRoutes);
+        this.app.use('/cpf', CPFRoutes);
 
     }
 

@@ -1,6 +1,11 @@
 interface ServiceResponse {
-    type: number
-    message: string | [] | object;
+  type: number;
+  message: string | [] | object;
 }
 
-export { ServiceResponse };
+interface CPFresponse {
+  cpf: string;
+  createdAt: string;
+}
+
+export { ServiceResponse, CPFresponse };
