@@ -3,12 +3,6 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
 import { UserService } from '../services';
 
-const jwtConfig: jwt.SignOptions = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-};
-const secret = process.env.JWT_SECRET || 'jwt_secret';
-
 export default class Login {
     public static addNewUser = async (req: Request, res: Response) => {
         try {
@@ -23,7 +17,8 @@ export default class Login {
                 role: body.role,
                 password: hash,
             };
-            const user = await UserService.addNewUser(newUser);
+
+            await UserService.addNewUser(newUser);
 
             return res
                 .status(201)

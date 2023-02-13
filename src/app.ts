@@ -3,23 +3,6 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerDoc from './swagger.json';
 import { CPFRoutes, UserRoutes, LoginRoutes } from './routes';
 
-const options = {
-    swaggerOptions: {
-        authAction: {
-            JWT: {
-                name: 'JWT',
-                schema: {
-                    type: 'apiKey',
-                    in: 'header',
-                    name: 'Authorization',
-                    description: '',
-                },
-                value: 'Bearer <JWT>',
-            },
-        },
-    },
-};
-
 class App {
     public app: express.Express;
     constructor() {
@@ -59,19 +42,3 @@ class App {
 }
 
 export { App };
-
-/* import cors from 'cors';
-import express from 'express';
-import { CPFRoutes } from './routes';
-
-const app = express();
-
-app.use(express.json());
-app.use(cors());
-
-app.get('/', (_request, response) => {
-    return response.send(200);
-});
-app.use('/cpf', CPFRoutes);
-
-export default app; */
