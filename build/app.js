@@ -8,22 +8,6 @@ const express_1 = __importDefault(require("express"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const swagger_json_1 = __importDefault(require("./swagger.json"));
 const routes_1 = require("./routes");
-const options = {
-    swaggerOptions: {
-        authAction: {
-            JWT: {
-                name: 'JWT',
-                schema: {
-                    type: 'apiKey',
-                    in: 'header',
-                    name: 'Authorization',
-                    description: '',
-                },
-                value: 'Bearer <JWT>',
-            },
-        },
-    },
-};
 class App {
     constructor() {
         this.app = (0, express_1.default)();
@@ -50,18 +34,3 @@ class App {
     }
 }
 exports.App = App;
-/* import cors from 'cors';
-import express from 'express';
-import { CPFRoutes } from './routes';
-
-const app = express();
-
-app.use(express.json());
-app.use(cors());
-
-app.get('/', (_request, response) => {
-    return response.send(200);
-});
-app.use('/cpf', CPFRoutes);
-
-export default app; */

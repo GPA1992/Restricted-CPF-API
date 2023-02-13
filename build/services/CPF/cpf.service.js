@@ -22,7 +22,7 @@ CPFService.findOneCPF = async (cpfNumber) => {
     try {
         const findCPF = await cpf_model_1.default.findOne({
             attributes: ['cpf', 'createdAt'],
-            where: { cpf: cpfNumber }
+            where: { cpf: cpfNumber },
         });
         return findCPF;
     }
@@ -33,7 +33,9 @@ CPFService.findOneCPF = async (cpfNumber) => {
 };
 CPFService.findAllCPF = async () => {
     try {
-        const findAllCPF = await cpf_model_1.default.findAll({ attributes: ['cpf', 'createdAt'] });
+        const findAllCPF = await cpf_model_1.default.findAll({
+            attributes: ['cpf', 'createdAt'],
+        });
         return findAllCPF;
     }
     catch (error) {

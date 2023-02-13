@@ -10,10 +10,16 @@ class UserService {
 exports.default = UserService;
 _a = UserService;
 UserService.findByName = async (name) => {
-    const findOne = await user_model_1.default.findOne({ where: { name } });
+    const findOne = await user_model_1.default.findOne({
+        where: { name },
+    });
     return findOne;
 };
-UserService.addNewUser = async ({ name, password, role }) => {
-    const findOne = await user_model_1.default.create({ name, password, role });
+UserService.addNewUser = async ({ name, password, role, }) => {
+    const findOne = await user_model_1.default.create({
+        name,
+        password,
+        role,
+    });
     return findOne;
 };

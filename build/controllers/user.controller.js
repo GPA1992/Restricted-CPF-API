@@ -26,11 +26,6 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = __importStar(require("bcryptjs"));
 const services_1 = require("../services");
-const jwtConfig = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-};
-const secret = process.env.JWT_SECRET || 'jwt_secret';
 class Login {
 }
 exports.default = Login;
@@ -45,7 +40,7 @@ Login.addNewUser = async (req, res) => {
             role: body.role,
             password: hash,
         };
-        const user = await services_1.UserService.addNewUser(newUser);
+        await services_1.UserService.addNewUser(newUser);
         return res
             .status(201)
             .json({ message: `User ${body.name} successfully created` });

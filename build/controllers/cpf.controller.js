@@ -41,7 +41,7 @@ CPFController.findAllCPFOnRestrictedList = async (req, res) => {
 CPFController.deleteCPFOnRestrictedList = async (req, res) => {
     try {
         const params = req.params;
-        const CPFresult = await services_1.CPFService.deleteCPF(params.cpf);
+        await services_1.CPFService.deleteCPF(params.cpf);
         return res.status(204).json();
     }
     catch (error) {

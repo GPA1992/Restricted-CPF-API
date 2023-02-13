@@ -5,6 +5,8 @@ services:
   node:
     # Imagem base do container
     image: node:16
+    command: bash
+    user: node
     # Nome do container para facilitar execução
     container_name: Restricted_CPF_API
     # Mesmo que `docker run -t`
@@ -12,7 +14,6 @@ services:
     # Mesmo que `docker run -i`
     stdin_open: true
     # Substitui o comando padrão da imagem do node
-    command: bash
     # Restarta a imagem caso algo a faça parar
     restart: always
     # Diretório padrão de execução
