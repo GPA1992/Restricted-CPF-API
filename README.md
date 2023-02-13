@@ -1,12 +1,14 @@
 # Restricted CPF API
 
+## Descrição
+
 O projeto Restricted CPF API surgiu da necessidade do time de análise de antifraude do e-commerce de armazenar os CPFs em uma lista restrita.
 Para isso essa API foi criada, nela é possível adicionar e deletar um CPF na lista de restritos, visualizar cada cpf de maneira independente e também listar todos os CPFs da lista.
 Para realizar alterações de adição e remoção de CPF, é necessário que um usuário autorizado esteja logado, como por exemplo o Product Owner.
 
-## Bibliotecas.
+# Bibliotecas.
 
-### SwagerUI
+## SwagerUI
 
 Para facilitar o entendimento do funcionamento de todos os endpoints e a dinâmica entre eles, essa API conta com um painel do SwagerUI, que demonstra cada endpoint e expõe a sua funcionalidade.
 
@@ -19,25 +21,35 @@ Endpoints:
 -   GET: /cpf/{cpf}
 -   DELETE: /cpf/{CPF}
 
-Para ter acesso a descrição detalhada de cada um acesse:
+Para ter acesso a descrição detalhada de cada um, após rodar o projeto acesse:
+<br>
 
-`PORTA`/documentation/.
+> ### http://localhost:`PORTA`/documentation/.
+
+ <br>
 
 Por padrão o projeto esta rodando na porta 3000.
 
-http://localhost:3000/documentation/
+> ### http://localhost:3000/documentation/
 
-### JsonWebToken
+<br>
+
+## JsonWebToken
 
 Para fazer a validação de login dos usuários que têm autorização foi utilizado a biblioteca JWT, que retorna um token de acordo o login que é realizado.
 
 <a href="https://www.npmjs.com/package/jsonwebtoken">JWT</a>
 
-### BCRYPT
+<br>
+
+## BCRYPT
 
 Para fazer a criptografia das senhas, foi usado a biblioteca node.bcrypt.js, que faz a codificação da senha de entrada e o modo reverso no middleware de verificação de login.
 
 <a href="https://www.npmjs.com/package/bcrypt">bcrypt</a>
+
+<br>
+<br>
 
 # Instalação e comandos
 
@@ -45,7 +57,8 @@ Para fazer a criptografia das senhas, foi usado a biblioteca node.bcrypt.js, que
 
 Para rodar com o docker, basta definir as variáveis de ambiente e as portas de acordo com a escolha do usuário dentro do docker-compose e digitar o comando `docker-compose up -d` no terminal.
 
--   Lembre-se de parar o `mysql` se estiver usando localmente na porta padrão (`3306`), ou adapte, caso queria fazer uso da aplicação em containers - Para parar o mysql digite: `systemctl stop mysql`
+-   Lembre-se de parar o `mysql` se estiver usando localmente na porta padrão (`3306`), ou adapte, caso queria fazer uso da aplicação em containers
+-   Para parar o mysql digite: `systemctl stop mysql`
 
 -   Esses serviços irão inicializar um container chamado `Restricted_CPF_API` e outro chamado `Restricted_CPF_API_db`.
 -   A partir daqui você pode rodar o container `Restricted_CPF_API` via CLI ou abri-lo no VS Code.
@@ -57,6 +70,9 @@ Para rodar com o docker, basta definir as variáveis de ambiente e as portas de 
 -   Dentro do container rode o comando:
 
 > `npm install` ou `yarn`
+
+<br>
+<br>
 
 # Comandos
 
