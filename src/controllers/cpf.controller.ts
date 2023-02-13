@@ -3,14 +3,12 @@ import { CPFService } from '../services';
 import { CPFresponse } from '../types/types';
 
 export default class CPFController {
-    public static addCPF = async (req: Request, res: Response) => {
+    public static addCPFToRestrictedList = async (req: Request, res: Response) => {
         try {
             const { cpf } = req.body;
 
-            const created = await CPFService.addCPF(cpf);
-            if (created.type) {
-                return res.status(created.type).json(created.message);
-            }
+            await CPFService.addCPF(cpf);
+
             return res.status(201).json();
         } catch (error) {
             console.log('contoller');
@@ -18,13 +16,36 @@ export default class CPFController {
         }
     };
 
-    public static findOneCPF = async (req: Request, res: Response) => {
+    public static findOneCPFOnRestrictedList = async (req: Request, res: Response) => {
         try {
             const params = req.params;
-            const CPFresult: CPFresponse | null = await CPFService.findOneCPF(params.cpf);
-            if (CPFresult === null) {
-                return res.status(404).json('NotFoundCpfException');
-            }
+
+            const CPFresult = await CPFService.findOneCPF(params.cpf);
+
+           return res.status(200).json(CPFresult);
+        } catch (error) {
+            console.log('contoller');
+            return res.status(500).json(error.message);
+        }
+    };
+
+    public static findAllCPFOnRestrictedList = async (req: Request, res: Response) => {
+        try {
+            const CPFresult = await CPFService.findAllCPF();
+
+            return res.status(200).json(CPFresult);
+        } catch (error) {
+            console.log('contoller');
+            return res.status(500).json(error.message);
+        }
+    };
+
+    public static deleteCPFOnRestrictedList = async (req: Request, res: Response) => {
+        try {
+            const params = req.params;
+
+            const CPFresult = await CPFService.deleteCPF(params.cpf);
+
             return res.status(200).json({cpd: CPFresult.cpf, createdAt: CPFresult.createdAt });
         } catch (error) {
             console.log('contoller');

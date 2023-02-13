@@ -5,7 +5,7 @@ interface ServiceResponse {
 
 interface CPFresponse {
   cpf: string;
-  createdAt: string;
+  createdAt: Date;
 }
 
-export { ServiceResponse, CPFresponse };
+export { ServiceResponse, CPFresponse, CPFBody };

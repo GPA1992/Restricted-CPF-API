@@ -1,26 +1,31 @@
 import express from 'express';
 import CPFController from '../controllers/cpf.controller';
-import CPFValidate from '../middleware/cpfFormatValidate';
+import CPFValidate from '../middleware/cpf.validate';
 
 const router = express.Router();
 
-// R -> READ
 router.get(
     '/:cpf',
-    CPFValidate.CPFParamsFormatValidate,
-    CPFController.findOneCPF
-);
+    CPFValidate.CPFParamsFormatValidate, 
+    CPFValidate.checkIfCPFExist,
+    CPFController.findOneCPFOnRestrictedList
+ );
 
-// C -> CREATE
-router.post('/', CPFValidate.CPFBodyFormatValidate, CPFController.addCPF);
+ router.get(
+    '/',
+    CPFController.findAllCPFOnRestrictedList
+ );
 
-/* // R -> READ.. But by ID
-router.get('/:visitorID');
+router.post('/',
+ CPFValidate.CPFBodyFormatValidate,
+ CPFValidate.checkIfCPFAlreadyExist,
+ CPFController.addCPFToRestrictedList);
 
-// U -> UPDATE
-router.put('/:visitorID');
-
-// D -> DELETE
-router.put('/:visitorID'); */
+router.delete(
+    '/:cpf',
+    CPFValidate.CPFParamsFormatValidate, 
+    CPFValidate.checkIfCPFExist,
+    CPFController.deleteCPFOnRestrictedList
+)
 
 export default router;
