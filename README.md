@@ -6,6 +6,55 @@ O projeto Restricted CPF API surgiu da necessidade do time de análise de antifr
 Para isso essa API foi criada, nela é possível adicionar e deletar um CPF na lista de restritos, visualizar cada cpf de maneira independente e também listar todos os CPFs da lista.
 Para realizar alterações de adição e remoção de CPF, é necessário que um usuário autorizado esteja logado, como por exemplo o Product Owner.
 
+<br>
+<br>
+
+# Instalação e comandos
+
+## Instalação das dependencias
+
+> -   Rode o comando `npm install` ou `yarn` na raiz do projeto
+
+## Docker
+
+Para rodar com o docker, basta definir as variáveis de ambiente e as portas de acordo com a escolha do usuário dentro do docker-compose e digitar o comando `docker-compose up -d` no terminal.
+
+-   Lembre-se de parar o `mysql` se estiver usando localmente na porta padrão (`3306`), ou adapte, caso queria fazer uso da aplicação em containers
+-   Para parar o mysql digite: `systemctl stop mysql`
+
+-   Esses serviços irão inicializar um container chamado `Restricted_CPF_API` e outro chamado `Restricted_CPF_API_db`.
+-   A partir daqui você pode rodar o container `Restricted_CPF_API` via CLI ou abri-lo no VS Code.
+
+> Use o comando `docker exec -it Restricted_CPF_API bash`.
+
+-   Ele te dará acesso ao terminal interativo do container criado pelo compose, que está rodando em segundo plano.
+
+-   Dentro do container rode os comandos abaixo de acordo com a sua necessidade..
+
+<br>
+<br>
+
+# Comandos
+
+> ### npm start
+
+-   Comando para rodar a API
+
+> ### npm run db:init
+
+-   Com esse comando a DB é criada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
+
+> ### npm run db:reset
+
+-   Com esse comando a DB é dropada, reinicializada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
+
+> ### npm run dev
+
+-   Com esse comando o servidor é iniciado com o nodemon, que é uma ferramenta que permite que seja feito alterações em tempo real, sem a necessidade de resetar a API para checar as mudanças.
+
+<br>
+<br>
+
 # Bibliotecas.
 
 ## SwagerUI
@@ -50,44 +99,3 @@ Para fazer a criptografia das senhas, foi usado a biblioteca node.bcrypt.js, que
 
 <br>
 <br>
-
-# Instalação e comandos
-
-## Docker
-
-Para rodar com o docker, basta definir as variáveis de ambiente e as portas de acordo com a escolha do usuário dentro do docker-compose e digitar o comando `docker-compose up -d` no terminal.
-
--   Lembre-se de parar o `mysql` se estiver usando localmente na porta padrão (`3306`), ou adapte, caso queria fazer uso da aplicação em containers
--   Para parar o mysql digite: `systemctl stop mysql`
-
--   Esses serviços irão inicializar um container chamado `Restricted_CPF_API` e outro chamado `Restricted_CPF_API_db`.
--   A partir daqui você pode rodar o container `Restricted_CPF_API` via CLI ou abri-lo no VS Code.
-
-> Use o comando `docker exec -it Restricted_CPF_API bash`.
-
--   Ele te dará acesso ao terminal interativo do container criado pelo compose, que está rodando em segundo plano.
-
--   Dentro do container rode o comando:
-
-> `npm install` ou `yarn`
-
-<br>
-<br>
-
-# Comandos
-
-> ### npm start
-
--   Comando para rodar a API
-
-> ### npm run db:init
-
--   Com esse comando a DB é criada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
-
-> ### npm run db:reset
-
--   Com esse comando a DB é dropada, reinicializada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
-
-> ### npm run dev
-
--   Com esse comando o servidor é iniciado com o nodemon, que é uma ferramenta que permite que seja feito alterações em tempo real, sem a necessidade de resetar a API para checar as mudanças.
