@@ -1,3 +1,5 @@
 import CPFRoutes from './CPF.routes';
- 
-export { CPFRoutes };
+import UserRoutes from './user.routes'
+import LoginRoutes from './login.routes';
+
+export { CPFRoutes, UserRoutes, LoginRoutes };

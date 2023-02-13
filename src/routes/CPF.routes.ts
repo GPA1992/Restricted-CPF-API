@@ -1,8 +1,11 @@
 import express from 'express';
 import CPFController from '../controllers/cpf.controller';
 import CPFValidate from '../middleware/cpf.validate';
+import AuthMiddleware from '../auth/auth'
 
 const router = express.Router();
+
+
 
 router.get(
     '/:cpf',
@@ -17,9 +20,11 @@ router.get(
  );
 
 router.post('/',
+ AuthMiddleware.tokenHandle,
  CPFValidate.CPFBodyFormatValidate,
  CPFValidate.checkIfCPFAlreadyExist,
- CPFController.addCPFToRestrictedList);
+ CPFController.addCPFToRestrictedList
+ );
 
 router.delete(
     '/:cpf',

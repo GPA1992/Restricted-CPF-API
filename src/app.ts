@@ -1,7 +1,7 @@
 import express from 'express';
 import swaggerUi from 'swagger-ui-express'
 import swaggerDoc from './swagger.json'
-import { CPFRoutes } from './routes';
+import { CPFRoutes, UserRoutes, LoginRoutes } from './routes';
 
 class App {
     public app: express.Express;
@@ -25,6 +25,8 @@ class App {
         this.app.use(accessControl);
         this.app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
         this.app.use('/cpf', CPFRoutes);
+        this.app.use('/user', UserRoutes);
+        this.app.use('/login', LoginRoutes);
 
     }
 
