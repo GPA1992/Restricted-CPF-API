@@ -230,6 +230,78 @@
                      }
                  }
              }
+        },
+        "/user": {
+            "post": {
+               "tags":["User"],
+               "summary": "Cria um novo usario" ,
+               "description": "Rota responsável por criar um novo usuario, pro usúario ser criado é necessario enviar um name, um password e uma role ",
+               "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UserBody" 
+                        }
+                    }
+                }
+            }, 
+            "responses": {
+                    "201": {
+                        "description": "Mensagem se um novo usuario foi criado",
+                        "content": {
+                           "application/json": {
+                               "schema" :{
+                                   "type": "object",
+                                   "$ref": "#/components/schemas/CPFError"                                   
+                               },
+                               "examples": {
+                                "User": {
+                                    "value": {
+                                        "message": "User Fulano criado"
+                                    }
+                                }
+                            }
+                           }
+                        }
+                    },
+                    "400" : {
+                        "description": "Mensagem se algum campo não foi enviado",
+                        "content": {
+                            "application/json": {
+                                "schema" :{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/CPFError"                                   
+                                },
+                                "examples": {
+                                    "CPF": {
+                                        "value": {
+                                            "message": "All fields must be filled"
+                                        }
+                                    }
+                                }
+                            }
+                         }
+                    },
+                    "409" : {
+                        "description": "Mensagem se o usuario ja existe",
+                        "content": {
+                            "application/json": {
+                                "schema" :{
+                                    "type": "object",
+                                    "$ref": "#/components/schemas/CPFError"                                   
+                                },
+                                "examples": {
+                                    "CPF": {
+                                        "value": {
+                                            "message": "UserAlreadyExist"
+                                        }
+                                    }
+                                }
+                            }
+                         }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -259,6 +331,23 @@
                     "message": {
                         "type": "string"
                     }
+                }
+            },
+            "UserBody" : {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "doggie"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "doggie123"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "cão de guarda"
+                    } 
                 }
             }
         }

@@ -16,9 +16,7 @@ export default class Login {
       const user = await UserService.findByName(name);
       const token = jwt.sign({ ...user }, secret, jwtConfig);
       
-      res.header('Authorization', `Bearer ${token}`)
-      res.status(200).json({ token });
-      
+      return res.status(200).json({ token }); 
 
     } catch (err: any) {
       return res.status(500).json({

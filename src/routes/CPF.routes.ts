@@ -20,7 +20,6 @@ router.get(
  );
 
 router.post('/',
- AuthMiddleware.tokenHandle,
  CPFValidate.CPFBodyFormatValidate,
  CPFValidate.checkIfCPFAlreadyExist,
  CPFController.addCPFToRestrictedList

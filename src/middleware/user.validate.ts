@@ -1,6 +1,14 @@
 import { NextFunction, Request, Response } from 'express';
 import * as bcrypt from 'bcryptjs';
 import { UserService } from '../services';
+import * as jwt from 'jsonwebtoken';
+
+const jwtConfig : jwt.SignOptions = {
+  expiresIn: '7d',
+  algorithm: 'HS256',
+};
+
+const secret = process.env.JWT_SECRET || 'jwt_secret';
 
 const incorrectMsg = 'Incorrect email or password';
 
@@ -38,7 +46,7 @@ class UserValidate {
     }
   }
 
-  public static async fieldValidate(req: Request, res: Response, next: NextFunction) {
+  public static  fieldValidate = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { name, password } = req.body;
       const userData = await UserService.findByName(name);
@@ -58,5 +66,4 @@ class UserValidate {
     }
   }
 }
-
 export default UserValidate;

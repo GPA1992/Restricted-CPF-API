@@ -8,9 +8,7 @@ const secret = process.env.JWT_SECRET || 'jwt_secret';
 class AuthMiddleware {
   public static tokenHandle(req: Request, res: Response, next: NextFunction) {
     try {
-      const token = req.headers['authorization'];
-      console.log(token);
-      
+      const token = req.header('Authorization');   
       
       if (!token) {
         return res.status(401).json({ message: 'Token not found' });

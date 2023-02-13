@@ -27,7 +27,7 @@ export default class Login {
       }      
       const user = await UserService.addNewUser(newUser);
 
-      return res.status(201).json(user);
+      return res.status(201).json({message: `User ${body.name} criado`});
 
     } catch (err: any) {
       return res.status(500).json({
