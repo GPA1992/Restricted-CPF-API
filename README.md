@@ -62,6 +62,8 @@ Para rodar com o docker, basta definir as variáveis de ambiente e as portas de 
 
 Para facilitar o entendimento do funcionamento de todos os endpoints e a dinâmica entre eles, essa API conta com um painel do SwagerUI, que demonstra cada endpoint e expõe a sua funcionalidade.
 
+<a href="https://swagger.io/">Swagger</a>
+
 Endpoints:
 
 -   POST: /user
