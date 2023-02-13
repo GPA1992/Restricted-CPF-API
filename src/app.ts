@@ -1,4 +1,6 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express'
+import swaggerDoc from './swagger.json'
 import { CPFRoutes } from './routes';
 
 class App {
@@ -19,9 +21,9 @@ class App {
             res.header('Access-Control-Allow-Headers', '*');
             next();
         };
-
         this.app.use(express.json());
         this.app.use(accessControl);
+        this.app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
         this.app.use('/cpf', CPFRoutes);
 
     }

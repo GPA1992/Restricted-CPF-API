@@ -46,7 +46,7 @@ export default class CPFController {
 
             const CPFresult = await CPFService.deleteCPF(params.cpf);
 
-            return res.status(200).json({cpd: CPFresult.cpf, createdAt: CPFresult.createdAt });
+            return res.status(204).json();
         } catch (error) {
             console.log('contoller');
             return res.status(500).json(error.message);

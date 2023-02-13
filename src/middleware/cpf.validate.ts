@@ -9,7 +9,7 @@ export default class CPFValidate {
             const { cpf } = req.body;
             const CPFFormatCheck = validate(cpf);
             if (!CPFFormatCheck) {
-                return res.status(400).json('InvalidCpfException');
+                return res.status(400).json({ message: 'InvalidCpfException' });
             }
             return next();
         } catch (error) {
@@ -21,7 +21,7 @@ export default class CPFValidate {
             const { cpf } = req.params;
             const CPFFormatCheck = validate(cpf);
             if (!CPFFormatCheck) {
-                return res.status(400).json('InvalidCpfException');
+                return res.status(400).json( { message: 'InvalidCpfException' });
             }
             return next();
         } catch (error) {
@@ -34,7 +34,7 @@ export default class CPFValidate {
             const params = req.params;
             const CPFresult: CPFresponse | null = await CPFService.findOneCPF(params.cpf);
 
-            if (CPFresult === null) return res.status(404).json('NotFoundCpfException')
+            if (CPFresult === null) return res.status(404).json({ message: 'NotFoundCpfException' })
 
             return next();
         } catch (error) {
@@ -46,7 +46,7 @@ export default class CPFValidate {
         const { cpf } = req.body;      
         const CPFcheck =  await CPFService.findOneCPF(cpf);       
         if (CPFcheck) {
-            return res.status(400).json('ExistsCpfException')
+            return res.status(409).json({ message: 'ExistsCpfException' })
         }
         return next();
     };
