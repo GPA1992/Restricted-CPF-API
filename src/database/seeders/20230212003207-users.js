@@ -5,9 +5,9 @@ module.exports = {
     up: async (queryInterface, Sequelize) => queryInterface.bulkInsert('Users',
         [
             {
-                name: 'Product Owner',
+                name: 'root',
                 password: '$2a$10$9BRN8/RqRxV5.B2T9P3npOZruw1ZPbJ/5e99D4JXLt.Sp4SH/m1EG', //'adm_password'
-                role: 'PO',
+                role: 'admin',
             },
         ], {}),
 

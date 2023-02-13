@@ -15,10 +15,9 @@
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint",
+        "@typescript-eslint"
     ],
-    "rules": {      
-       "space-before-function-paren": ["error", "always"],
+    "rules": {
         "indent": [
             "error",
             4

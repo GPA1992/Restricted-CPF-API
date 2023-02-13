@@ -4,7 +4,11 @@ import { CPFService } from '../services';
 import { CPFresponse } from '../types/types';
 
 export default class CPFValidate {
-    public static CPFBodyFormatValidate = async (req: Request,res: Response,next: NextFunction) => {
+    public static CPFBodyFormatValidate = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
         try {
             const { cpf } = req.body;
             const CPFFormatCheck = validate(cpf);
@@ -16,12 +20,16 @@ export default class CPFValidate {
             return res.status(500).json(error.message);
         }
     };
-    public static CPFParamsFormatValidate = async (req: Request, res: Response, next: NextFunction) => {
+    public static CPFParamsFormatValidate = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
         try {
             const { cpf } = req.params;
             const CPFFormatCheck = validate(cpf);
             if (!CPFFormatCheck) {
-                return res.status(400).json( { message: 'InvalidCpfException' });
+                return res.status(400).json({ message: 'InvalidCpfException' });
             }
             return next();
         } catch (error) {
@@ -29,12 +37,21 @@ export default class CPFValidate {
         }
     };
 
-    public static checkIfCPFExist = async (req: Request, res: Response, next: NextFunction) => {
+    public static checkIfCPFExist = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
         try {
             const params = req.params;
-            const CPFresult: CPFresponse | null = await CPFService.findOneCPF(params.cpf);
+            const CPFresult: CPFresponse | null = await CPFService.findOneCPF(
+                params.cpf
+            );
 
-            if (CPFresult === null) return res.status(404).json({ message: 'NotFoundCpfException' })
+            if (CPFresult === null)
+                return res
+                    .status(404)
+                    .json({ message: 'NotFoundCpfException' });
 
             return next();
         } catch (error) {
@@ -42,11 +59,15 @@ export default class CPFValidate {
         }
     };
 
-    public static checkIfCPFAlreadyExist = async (req: Request, res: Response, next: NextFunction) => { 
-        const { cpf } = req.body;      
-        const CPFcheck =  await CPFService.findOneCPF(cpf);       
+    public static checkIfCPFAlreadyExist = async (
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) => {
+        const { cpf } = req.body;
+        const CPFcheck = await CPFService.findOneCPF(cpf);
         if (CPFcheck) {
-            return res.status(409).json({ message: 'ExistsCpfException' })
+            return res.status(409).json({ message: 'ExistsCpfException' });
         }
         return next();
     };
