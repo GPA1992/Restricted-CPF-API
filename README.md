@@ -7,13 +7,16 @@ Para isso essa API foi criada, nela é possível adicionar e deletar um CPF na l
 Para realizar alterações de adição e remoção de CPF, é necessário que um usuário autorizado esteja logado, como por exemplo o Product Owner.
 
 <br>
-<br>
 
 # Instalação e comandos
 
-## Instalação das dependencias
+<br>
+
+## Dependencias
 
 > -   Rode o comando `npm install` ou `yarn` na raiz do projeto
+
+<br>
 
 ## Docker
 
@@ -29,9 +32,8 @@ Para rodar com o docker, basta definir as variáveis de ambiente e as portas de 
 
 -   Ele te dará acesso ao terminal interativo do container criado pelo compose, que está rodando em segundo plano.
 
--   Dentro do container rode os comandos abaixo de acordo com a sua necessidade..
+-   Dentro do container rode os comandos abaixo de acordo com a sua necessidade.
 
-<br>
 <br>
 
 # Comandos
@@ -52,7 +54,6 @@ Para rodar com o docker, basta definir as variáveis de ambiente e as portas de 
 
 -   Com esse comando o servidor é iniciado com o nodemon, que é uma ferramenta que permite que seja feito alterações em tempo real, sem a necessidade de resetar a API para checar as mudanças.
 
-<br>
 <br>
 
 # Bibliotecas.
@@ -96,6 +97,3 @@ Para fazer a validação de login dos usuários que têm autorização foi utili
 Para fazer a criptografia das senhas, foi usado a biblioteca node.bcrypt.js, que faz a codificação da senha de entrada e o modo reverso no middleware de verificação de login.
 
 <a href="https://www.npmjs.com/package/bcrypt">bcrypt</a>
-
-<br>
-<br>
