@@ -84,6 +84,12 @@ Por padrão o projeto esta rodando na porta 3000.
 
 <br>
 
+## CPF Check
+
+Para validar os CPF que são inseridos, foi usado a biblioteca CPF Check, que gera, valida e formata o CPF, nessa aplicação foi usada apenas a função de validação.
+
+<a href="https://www.npmjs.com/package/cpf-check">cpf-check</a>
+
 ## JsonWebToken
 
 Para fazer a validação de login dos usuários que têm autorização foi utilizado a biblioteca JWT, que retorna um token de acordo o login que é realizado.
