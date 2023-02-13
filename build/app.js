@@ -3,14 +3,65 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const cors_1 = __importDefault(require("cors"));
+exports.App = void 0;
 const express_1 = __importDefault(require("express"));
-const visitors_routes_1 = __importDefault(require("./routes/visitors.routes"));
-const app = (0, express_1.default)();
-app.use(express_1.default.json());
-app.use((0, cors_1.default)());
+const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
+const swagger_json_1 = __importDefault(require("./swagger.json"));
+const routes_1 = require("./routes");
+const options = {
+    swaggerOptions: {
+        authAction: {
+            JWT: {
+                name: 'JWT',
+                schema: {
+                    type: 'apiKey',
+                    in: 'header',
+                    name: 'Authorization',
+                    description: '',
+                },
+                value: 'Bearer <JWT>',
+            },
+        },
+    },
+};
+class App {
+    constructor() {
+        this.app = (0, express_1.default)();
+        this.config();
+        // Não remover essa rota
+        this.app.get('/', (req, res) => res.json({ ok: true }));
+    }
+    config() {
+        const accessControl = (_req, res, next) => {
+            res.header('Access-Control-Allow-Origin', '*');
+            res.header('Access-Control-Allow-Methods', 'GET,POST,DELETE,OPTIONS,PUT,PATCH');
+            res.header('Access-Control-Allow-Headers', '*');
+            next();
+        };
+        this.app.use(express_1.default.json());
+        this.app.use(accessControl);
+        this.app.use('/documentation', swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(swagger_json_1.default));
+        this.app.use('/cpf', routes_1.CPFRoutes);
+        this.app.use('/user', routes_1.UserRoutes);
+        this.app.use('/login', routes_1.LoginRoutes);
+    }
+    start(PORT) {
+        this.app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+    }
+}
+exports.App = App;
+/* import cors from 'cors';
+import express from 'express';
+import { CPFRoutes } from './routes';
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+
 app.get('/', (_request, response) => {
     return response.send(200);
 });
-app.use('/visitors', visitors_routes_1.default);
-exports.default = app;
+app.use('/cpf', CPFRoutes);
+
+export default app; */

@@ -22,21 +22,33 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const visitorController = __importStar(require("../controllers/visitor.controller"));
-const router = express_1.default.Router();
-// R -> READ
-router.get('/', visitorController.getAll);
-// C -> CREATE
-router.post('/', visitorController.create);
-// R -> READ.. But by ID
-router.get('/:visitorID');
-// U -> UPDATE
-router.put('/:visitorID');
-// D -> DELETE
-router.put('/:visitorID');
-exports.default = router;
+const jwt = __importStar(require("jsonwebtoken"));
+const services_1 = require("../services");
+const jwtConfig = {
+    expiresIn: '7d',
+    algorithm: 'HS256',
+};
+const secret = process.env.JWT_SECRET || 'jwt_secret';
+class Login {
+}
+exports.default = Login;
+_a = Login;
+Login.login = async (req, res) => {
+    try {
+        const { name } = req.body;
+        const user = await services_1.UserService.findByName(name);
+        const token = jwt.sign(Object.assign({}, user), secret, jwtConfig);
+        if (user.role === 'admin') {
+            return res.status(200).json({ token });
+        }
+        return res.status(200).json({ message: `User ${name} logged in` });
+    }
+    catch (err) {
+        return res.status(500).json({
+            message: 500,
+            error: err.message,
+        });
+    }
+};

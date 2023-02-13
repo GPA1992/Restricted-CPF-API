@@ -22,21 +22,38 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const visitorController = __importStar(require("../controllers/visitor.controller"));
-const router = express_1.default.Router();
-// R -> READ
-router.get('/', visitorController.getAll);
-// C -> CREATE
-router.post('/', visitorController.create);
-// R -> READ.. But by ID
-router.get('/:visitorID');
-// U -> UPDATE
-router.put('/:visitorID');
-// D -> DELETE
-router.put('/:visitorID');
-exports.default = router;
+const bcrypt = __importStar(require("bcryptjs"));
+const services_1 = require("../services");
+const jwtConfig = {
+    expiresIn: '7d',
+    algorithm: 'HS256',
+};
+const secret = process.env.JWT_SECRET || 'jwt_secret';
+class Login {
+}
+exports.default = Login;
+_a = Login;
+Login.addNewUser = async (req, res) => {
+    try {
+        const { body } = req;
+        const salt = bcrypt.genSaltSync(10);
+        const hash = bcrypt.hashSync(body.password, salt);
+        const newUser = {
+            name: body.name,
+            role: body.role,
+            password: hash,
+        };
+        const user = await services_1.UserService.addNewUser(newUser);
+        return res
+            .status(201)
+            .json({ message: `User ${body.name} successfully created` });
+    }
+    catch (err) {
+        return res.status(500).json({
+            message: 500,
+            error: err.message,
+        });
+    }
+};

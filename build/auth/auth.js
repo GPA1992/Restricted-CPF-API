@@ -22,21 +22,31 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const visitorController = __importStar(require("../controllers/visitor.controller"));
-const router = express_1.default.Router();
-// R -> READ
-router.get('/', visitorController.getAll);
-// C -> CREATE
-router.post('/', visitorController.create);
-// R -> READ.. But by ID
-router.get('/:visitorID');
-// U -> UPDATE
-router.put('/:visitorID');
-// D -> DELETE
-router.put('/:visitorID');
-exports.default = router;
+const jwt = __importStar(require("jsonwebtoken"));
+require('dotenv/config');
+const secret = process.env.JWT_SECRET || 'jwt_secret';
+class AuthMiddleware {
+    static tokenHandle(req, res, next) {
+        try {
+            const token = req.header('Authorization');
+            if (!token) {
+                return res.status(401).json({ message: 'Token not found' });
+            }
+            jwt.verify(token, secret, (err, user) => {
+                if (err)
+                    return res
+                        .status(401)
+                        .json({ message: 'Token must be a valid token' });
+                req.body = Object.assign(Object.assign({}, req.body), { user });
+                return next();
+            });
+        }
+        catch (err) {
+            return res
+                .status(401)
+                .json({ message: 'Expired or invalid token' });
+        }
+    }
+}
+exports.default = AuthMiddleware;
