@@ -36,11 +36,9 @@ CPFValidate.CPFParamsFormatValidate = async (req, res, next) => {
 CPFValidate.checkIfCPFExist = async (req, res, next) => {
     try {
         const params = req.params;
-        const CPFresult = await services_1.CPFService.findOneCPF(params.cpf);
+        const CPFresult = await services_1.CPFServices.findOneCPF(params.cpf);
         if (CPFresult === null)
-            return res
-                .status(404)
-                .json({ message: 'NotFoundCpfException' });
+            return res.status(404).json({ message: 'NotFoundCpfException' });
         return next();
     }
     catch (error) {
@@ -49,7 +47,7 @@ CPFValidate.checkIfCPFExist = async (req, res, next) => {
 };
 CPFValidate.checkIfCPFAlreadyExist = async (req, res, next) => {
     const { cpf } = req.body;
-    const CPFcheck = await services_1.CPFService.findOneCPF(cpf);
+    const CPFcheck = await services_1.CPFServices.findOneCPF(cpf);
     if (CPFcheck) {
         return res.status(409).json({ message: 'ExistsCpfException' });
     }

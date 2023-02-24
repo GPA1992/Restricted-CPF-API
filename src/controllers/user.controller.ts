@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
-import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
-import { UserService } from '../services';
+import { UserServices } from '../services';
 
-export default class Login {
+export default class UserController {
     public static addNewUser = async (req: Request, res: Response) => {
         try {
             const { body } = req;
@@ -18,11 +17,9 @@ export default class Login {
                 password: hash,
             };
 
-            await UserService.addNewUser(newUser);
+            await UserServices.addNewUser(newUser);
 
-            return res
-                .status(201)
-                .json({ message: `User ${body.name} successfully created` });
+            return res.status(201).json({ message: `User ${body.name} successfully created` });
         } catch (err: any) {
             return res.status(500).json({
                 message: 500,

@@ -5,7 +5,7 @@ interface ServiceResponse {
 
 interface CPFresponse {
     cpf: string;
-    createdAt: Date;
+    createdAt: Date | string;
 }
 
 interface UserType {

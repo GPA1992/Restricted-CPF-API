@@ -1,63 +1,47 @@
 import { Request, Response } from 'express';
-import { CPFService } from '../services';
+import { CPFServices } from '../services';
 
 export default class CPFController {
-    public static addCPFToRestrictedList = async (
-        req: Request,
-        res: Response
-    ) => {
+    public static addCPFToRestrictedList = async (req: Request, res: Response) => {
         try {
             const { cpf } = req.body;
 
-            await CPFService.addCPF(cpf);
+            await CPFServices.addCPF(cpf);
 
             return res.status(201).json();
         } catch (error) {
-            console.log('contoller');
             return res.status(500).json(error.message);
         }
     };
 
-    public static findOneCPFOnRestrictedList = async (
-        req: Request,
-        res: Response
-    ) => {
+    public static findOneCPFOnRestrictedList = async (req: Request, res: Response) => {
         try {
             const params = req.params;
 
-            const CPFresult = await CPFService.findOneCPF(params.cpf);
+            const CPFresult = await CPFServices.findOneCPF(params.cpf);
 
             return res.status(200).json(CPFresult);
         } catch (error) {
-            console.log('contoller');
             return res.status(500).json(error.message);
         }
     };
 
-    public static findAllCPFOnRestrictedList = async (
-        req: Request,
-        res: Response
-    ) => {
+    public static findAllCPFOnRestrictedList = async (req: Request, res: Response) => {
         try {
-            const CPFresult = await CPFService.findAllCPF();
+            const CPFresult = await CPFServices.findAllCPF();
 
             return res.status(200).json(CPFresult);
         } catch (error) {
-            console.log('contoller');
             return res.status(500).json(error.message);
         }
     };
 
-    public static deleteCPFOnRestrictedList = async (
-        req: Request,
-        res: Response
-    ) => {
+    public static deleteCPFOnRestrictedList = async (req: Request, res: Response) => {
         try {
             const params = req.params;
-            await CPFService.deleteCPF(params.cpf);
+            await CPFServices.deleteCPF(params.cpf);
             return res.status(204).json();
         } catch (error) {
-            console.log('contoller');
             return res.status(500).json(error.message);
         }
     };

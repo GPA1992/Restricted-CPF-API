@@ -1,19 +1,19 @@
 import { Request, Response } from 'express';
 import * as jwt from 'jsonwebtoken';
-import { UserService } from '../services';
+import { UserServices } from '../services';
 
 const jwtConfig: jwt.SignOptions = {
-    expiresIn: '7d',
+    expiresIn: '999d',
     algorithm: 'HS256',
 };
 
 const secret = process.env.JWT_SECRET || 'jwt_secret';
 
-export default class Login {
+export default class LoginController {
     public static login = async (req: Request, res: Response) => {
         try {
             const { name } = req.body;
-            const user = await UserService.findByName(name);
+            const user = await UserServices.findByName(name);
             const token = jwt.sign({ ...user }, secret, jwtConfig);
             if (user.role === 'admin') {
                 return res.status(200).json({ token });
