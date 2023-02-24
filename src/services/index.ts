@@ -1,4 +1,4 @@
-import CPFService from './CPF/cpf.service';
-import UserService from './user/users.service'
+import CPFServices from './CPF/cpf.services';
+import UserServices from './user/users.services';
 
-export {CPFService, UserService };
+export { CPFServices, UserServices };

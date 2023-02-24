@@ -27,18 +27,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = __importStar(require("jsonwebtoken"));
 const services_1 = require("../services");
 const jwtConfig = {
-    expiresIn: '7d',
+    expiresIn: '999d',
     algorithm: 'HS256',
 };
 const secret = process.env.JWT_SECRET || 'jwt_secret';
-class Login {
+class LoginController {
 }
-exports.default = Login;
-_a = Login;
-Login.login = async (req, res) => {
+exports.default = LoginController;
+_a = LoginController;
+LoginController.login = async (req, res) => {
     try {
         const { name } = req.body;
-        const user = await services_1.UserService.findByName(name);
+        const user = await services_1.UserServices.findByName(name);
         const token = jwt.sign(Object.assign({}, user), secret, jwtConfig);
         if (user.role === 'admin') {
             return res.status(200).json({ token });

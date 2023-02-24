@@ -26,11 +26,11 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = __importStar(require("bcryptjs"));
 const services_1 = require("../services");
-class Login {
+class UserController {
 }
-exports.default = Login;
-_a = Login;
-Login.addNewUser = async (req, res) => {
+exports.default = UserController;
+_a = UserController;
+UserController.addNewUser = async (req, res) => {
     try {
         const { body } = req;
         const salt = bcrypt.genSaltSync(10);
@@ -40,10 +40,8 @@ Login.addNewUser = async (req, res) => {
             role: body.role,
             password: hash,
         };
-        await services_1.UserService.addNewUser(newUser);
-        return res
-            .status(201)
-            .json({ message: `User ${body.name} successfully created` });
+        await services_1.UserServices.addNewUser(newUser);
+        return res.status(201).json({ message: `User ${body.name} successfully created` });
     }
     catch (err) {
         return res.status(500).json({

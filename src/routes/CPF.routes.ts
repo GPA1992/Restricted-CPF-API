@@ -1,5 +1,5 @@
 import express from 'express';
-import CPFController from '../controllers/cpf.controller';
+import { CPFController } from '../controllers';
 import CPFValidate from '../middleware/cpf.validate';
 import AuthMiddleware from '../auth/auth';
 

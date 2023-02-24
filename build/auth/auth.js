@@ -35,17 +35,13 @@ class AuthMiddleware {
             }
             jwt.verify(token, secret, (err, user) => {
                 if (err)
-                    return res
-                        .status(401)
-                        .json({ message: 'Token must be a valid token' });
+                    return res.status(401).json({ message: 'Token must be a valid token' });
                 req.body = Object.assign(Object.assign({}, req.body), { user });
                 return next();
             });
         }
         catch (err) {
-            return res
-                .status(401)
-                .json({ message: 'Expired or invalid token' });
+            return res.status(401).json({ message: 'Expired or invalid token' });
         }
     }
 }

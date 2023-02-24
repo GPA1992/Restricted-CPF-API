@@ -26,11 +26,6 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = __importStar(require("bcryptjs"));
 const services_1 = require("../services");
-const jwtConfig = {
-    expiresIn: '7d',
-    algorithm: 'HS256',
-};
-const secret = process.env.JWT_SECRET || 'jwt_secret';
 const incorrectMsg = 'Incorrect email or password';
 class UserValidate {
 }
@@ -40,11 +35,9 @@ UserValidate.createUserfieldHandle = async (req, res, next) => {
         const { name, password, role } = req.body;
         const fieldsRequire = name && password && role;
         if (!fieldsRequire) {
-            return res
-                .status(400)
-                .json({ message: 'All fields must be filled' });
+            return res.status(400).json({ message: 'All fields must be filled' });
         }
-        const findUser = await services_1.UserService.findByName(name);
+        const findUser = await services_1.UserServices.findByName(name);
         if (findUser !== null) {
             return res.status(409).json({ message: 'UserAlreadyExist' });
         }
@@ -59,9 +52,7 @@ UserValidate.loginFieldHandle = async (req, res, next) => {
         const { name, password } = req.body;
         const fieldsRequire = name && password;
         if (!fieldsRequire) {
-            return res
-                .status(400)
-                .json({ message: 'All fields must be filled' });
+            return res.status(400).json({ message: 'All fields must be filled' });
         }
         return next();
     }
@@ -72,7 +63,7 @@ UserValidate.loginFieldHandle = async (req, res, next) => {
 UserValidate.fieldValidate = async (req, res, next) => {
     try {
         const { name, password } = req.body;
-        const userData = await services_1.UserService.findByName(name);
+        const userData = await services_1.UserServices.findByName(name);
         if (!userData) {
             return res.status(401).json({ message: incorrectMsg });
         }

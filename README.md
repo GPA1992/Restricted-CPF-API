@@ -82,7 +82,7 @@ Por padrão o projeto esta rodando na porta 3000.
 ### http://localhost:3000/documentation/
 
  <br>
- 
+
 ## CPF Check
 
 Para validar os CPF que são inseridos, foi usado a biblioteca CPF Check, que gera, valida e formata o CPF, nessa aplicação foi usada apenas a função de validação.

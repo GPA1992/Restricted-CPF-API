@@ -2,26 +2,24 @@ import CPFModel from '../../database/models/cpf.model';
 import { CPFresponse } from '../../types/types';
 
 export default class CPFService {
-    public static addCPF = async (cpf: string): Promise<void> => {
+    public static addCPF = async (cpf: string): Promise<CPFresponse> => {
         try {
-            await CPFModel.create({ cpf });
+            const newCPF = await CPFModel.create({ cpf });
+            return newCPF;
         } catch (error) {
-            console.log('service');
             return error.message;
         }
     };
 
-    public static findOneCPF = async (
-        cpfNumber: string
-    ): Promise<CPFresponse> => {
+    public static findOneCPF = async (cpfNumber: string): Promise<CPFresponse> => {
         try {
             const findCPF = await CPFModel.findOne({
                 attributes: ['cpf', 'createdAt'],
                 where: { cpf: cpfNumber },
             });
+
             return findCPF;
         } catch (error) {
-            console.log('service');
             return error.message;
         }
     };
