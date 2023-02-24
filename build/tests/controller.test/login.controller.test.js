@@ -14,7 +14,7 @@ const expect = chai_1.default.expect;
 describe('LoginController', () => {
     const secret = 'jwt_secret';
     const jwtConfig = {
-        expiresIn: '7d',
+        expiresIn: '999d',
         algorithm: 'HS256',
     };
     describe('login', () => {

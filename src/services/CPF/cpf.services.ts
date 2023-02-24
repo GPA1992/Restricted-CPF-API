@@ -17,6 +17,7 @@ export default class CPFService {
                 attributes: ['cpf', 'createdAt'],
                 where: { cpf: cpfNumber },
             });
+
             return findCPF;
         } catch (error) {
             return error.message;

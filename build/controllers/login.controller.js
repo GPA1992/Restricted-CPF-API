@@ -27,7 +27,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jwt = __importStar(require("jsonwebtoken"));
 const services_1 = require("../services");
 const jwtConfig = {
-    expiresIn: '7d',
+    expiresIn: '999d',
     algorithm: 'HS256',
 };
 const secret = process.env.JWT_SECRET || 'jwt_secret';

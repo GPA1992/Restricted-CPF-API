@@ -2,12 +2,10 @@ import { UserType } from '../../types/types';
 import userModel from '../../database/models/user.model';
 
 export default class UserServices {
-    public static findByName = async (name: string): Promise<UserType | null> => {
+    public static findByName = async (name: string): Promise<UserType> => {
         const findOne: UserType | null = await userModel.findOne({
             where: { name },
         });
-        console.log(findOne);
-
         return findOne;
     };
 
