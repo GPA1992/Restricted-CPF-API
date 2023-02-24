@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import * as bcrypt from 'bcryptjs';
 import { UserServices } from '../services';
 
-const incorrectMsg = 'Incorrect email or password';
+const incorrectMsg = 'Incorrect name or password';
 
 class UserValidate {
     public static createUserfieldHandle = async (req: Request, res: Response, next: NextFunction) => {
