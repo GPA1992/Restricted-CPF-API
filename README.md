@@ -14,7 +14,7 @@ Para realizar alterações de adição e remoção de CPF, é necessário que um
 
 ## Dependencias
 
-> -   Rode o comando `npm install` ou `yarn` na raiz do projeto
+-   Rode o comando `npm install` ou `yarn` na raiz do projeto
 
 <br>
 
@@ -26,9 +26,8 @@ Para rodar com o docker, basta definir as variáveis de ambiente e as portas de 
 -   Para parar o mysql digite: `systemctl stop mysql`
 
 -   Esses serviços irão inicializar um container chamado `Restricted_CPF_API` e outro chamado `Restricted_CPF_API_db`.
--   A partir daqui você pode rodar o container `Restricted_CPF_API` via CLI ou abri-lo no VS Code.
 
-> Use o comando `docker exec -it Restricted_CPF_API bash`.
+Use o comando `docker exec -it Restricted_CPF_API bash`.
 
 -   Ele te dará acesso ao terminal interativo do container criado pelo compose, que está rodando em segundo plano.
 
@@ -38,21 +37,21 @@ Para rodar com o docker, basta definir as variáveis de ambiente e as portas de 
 
 # Comandos
 
-> ### npm start
+Comando para rodar a API
 
--   Comando para rodar a API
+-   ### `npm start`
 
-> ### npm run db:init
+Com esse comando a DB é criada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
 
--   Com esse comando a DB é criada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
+-   ### `npm run db:init`
 
-> ### npm run db:reset
+Com esse comando a DB é dropada, reinicializada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
 
--   Com esse comando a DB é dropada, reinicializada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
+-   ### `npm run db:reset`
 
-> ### npm run dev
+Com esse comando o servidor é iniciado com o nodemon, que é uma ferramenta que permite que seja feito alterações em tempo real, sem a necessidade de resetar a API para checar as mudanças.
 
--   Com esse comando o servidor é iniciado com o nodemon, que é uma ferramenta que permite que seja feito alterações em tempo real, sem a necessidade de resetar a API para checar as mudanças.
+-   ### `npm run dev`
 
 <br>
 
@@ -76,14 +75,14 @@ Endpoints:
 Para ter acesso a descrição detalhada de cada um, após rodar o projeto acesse:
 <br>
 
-> ### localhost+`PORTA`+/documentation/.
-
- <br>
+### localhost+`PORTA`+/documentation/.
 
 Por padrão o projeto esta rodando na porta 3000.
 
-> ### http://localhost:3000/documentation/
+### http://localhost:3000/documentation/
 
+ <br>
+ 
 ## CPF Check
 
 Para validar os CPF que são inseridos, foi usado a biblioteca CPF Check, que gera, valida e formata o CPF, nessa aplicação foi usada apenas a função de validação.
