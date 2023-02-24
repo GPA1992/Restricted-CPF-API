@@ -39,19 +39,19 @@ Use o comando `docker exec -it Restricted_CPF_API bash`.
 
 Comando para rodar a API
 
--   ### `npm start`
+-   `npm start`
 
 Com esse comando a DB é criada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
 
--   ### `npm run db:init`
+-   `npm run db:init`
 
 Com esse comando a DB é dropada, reinicializada e alimentada de acordo com as migrations e seeds que estão em src/database. Na seed contém o dado de um usuario 'root', que vai dar permissão para execução de todos os endpoint.
 
--   ### `npm run db:reset`
+-   `npm run db:reset`
 
 Com esse comando o servidor é iniciado com o nodemon, que é uma ferramenta que permite que seja feito alterações em tempo real, sem a necessidade de resetar a API para checar as mudanças.
 
--   ### `npm run dev`
+-   `npm run dev`
 
 <br>
 
