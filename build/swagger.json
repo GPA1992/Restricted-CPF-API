@@ -160,7 +160,7 @@
                                 "examples": {
                                     "CPF": {
                                         "value": {
-                                            "message": "Incorrect email or password"
+                                            "message": "Incorrect name or password"
                                         }
                                     }
                                 }

@@ -26,7 +26,7 @@ var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt = __importStar(require("bcryptjs"));
 const services_1 = require("../services");
-const incorrectMsg = 'Incorrect email or password';
+const incorrectMsg = 'Incorrect name or password';
 class UserValidate {
 }
 _a = UserValidate;
