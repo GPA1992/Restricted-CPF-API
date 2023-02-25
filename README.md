@@ -14,7 +14,7 @@ Para realizar alterações de adição e remoção de CPF, é necessário que um
 
 ## Dependencias
 
--   Rode o comando `npm install` ou `yarn` na raiz do projeto
+-   Rode o comando `npm install` na raiz do projeto
 
 <br>
 
