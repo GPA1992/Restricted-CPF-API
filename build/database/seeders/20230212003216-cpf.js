@@ -3,7 +3,7 @@
 module.exports = {
     up: async (queryInterface, Sequelize) => queryInterface.bulkInsert('cpf', [
         {
-            cpf: '50001567808',
+            cpf: '22372721313',
             createdAt: Sequelize.fn('NOW'),
             updatedAt: Sequelize.fn('NOW'),
         },

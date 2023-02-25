@@ -40,7 +40,7 @@ describe('App', () => {
     after(async () => {
         server.close();
     });
-    it('should display "ok: true" on root endpoint "/"', async () => {
+    it('deve exibir "ok: true" no endpoint raiz "/"', async () => {
         const res = await chai_1.default.request(app.app).get('/');
         (0, chai_1.expect)(res.status).to.equal(200);
         (0, chai_1.expect)(res.body).to.deep.equal({ ok: true });

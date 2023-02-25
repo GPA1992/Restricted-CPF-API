@@ -17,7 +17,7 @@ describe('App', () => {
         server.close();
     });
 
-    it('should display "ok: true" on root endpoint "/"', async () => {
+    it('deve exibir "ok: true" no endpoint raiz "/"', async () => {
         const res = await chai.request(app.app).get('/');
         expect(res.status).to.equal(200);
         expect(res.body).to.deep.equal({ ok: true });

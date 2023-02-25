@@ -43,11 +43,15 @@ export default class CPFValidate {
     };
 
     public static checkIfCPFAlreadyExist = async (req: Request, res: Response, next: NextFunction) => {
-        const { cpf } = req.body;
-        const CPFcheck = await CPFServices.findOneCPF(cpf);
-        if (CPFcheck) {
-            return res.status(409).json({ message: 'ExistsCpfException' });
+        try {
+            const { cpf } = req.body;
+            const CPFcheck = await CPFServices.findOneCPF(cpf);
+            if (CPFcheck) {
+                return res.status(409).json({ message: 'ExistsCpfException' });
+            }
+            return next();
+        } catch (error) {
+            return res.status(500).json(error.message);
         }
-        return next();
     };
 }
